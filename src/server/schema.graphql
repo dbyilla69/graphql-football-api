@@ -1,0 +1,10 @@
+# type Query {
+#   players(query: String): [Player!]!
+# }
+
+# type Player {
+#   id: ID
+#   firstName: String
+#   lastName: String
+#   jerseyNumber: ID
+# }
