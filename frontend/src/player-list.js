@@ -3,18 +3,34 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 
-const Container = styled.div`
-  margin: 2rem;
+const Wrapper = styled.div`
   display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(5, 0.5fr);
-  grid-template-rows: 1rem;
-  border-style: outset;
+  grid-template-columns: repeat(5, minmax(50px, 1fr));
+  background-color: #fff;
+  color: #444;
+  max-width: 800px;
 `;
-const Cell = styled.span`
-  color: #5c2b2f;
-  font-size: 1rem;
-  text-align: left;
+
+const Row = styled.div`
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(50px, 1fr));
+`;
+
+const Title = styled.div`
+  background-color: #5c2b2f;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150 %;
+`;
+const Box = styled.div`
+  background-color: #c7c7c7;
+  color: #444;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 100%;
+  border-style: outset;
 `;
 
 const query = gql`
@@ -44,19 +60,24 @@ class PlayerList extends React.Component {
           console.log(data.players);
 
           return (
-            <div>
+            <Wrapper>
+              <Title>Player Name</Title>
+              <Title>Jersey Number</Title>
+              <Title>Position</Title>
+              <Title>Height</Title>
+              <Title>Weight</Title>
               {players.map(player => (
-                <Container key={player.id}>
-                  <Cell>{player.jerseyNumber}</Cell>
-                  <Cell>
+                <Row key={player.id}>
+                  <Box key={player.id}>
                     {player.firstName} {player.lastName}
-                  </Cell>
-                  <Cell>{player.primaryPosition}</Cell>
-                  <Cell>{player.height}</Cell>
-                  <Cell>{player.weight}</Cell>
-                </Container>
+                  </Box>
+                  <Box>{player.jerseyNumber}</Box>
+                  <Box>{player.primaryPosition}</Box>
+                  <Box>{player.height}</Box>
+                  <Box>{player.weight}</Box>
+                </Row>
               ))}
-            </div>
+            </Wrapper>
           );
         }}
       </Query>
