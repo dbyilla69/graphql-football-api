@@ -1,5 +1,6 @@
 import React from 'react';
 import PlayerList from './player-list';
+import Select from './select';
 // import styled from 'styled-components';
 
 // const AppWrapper = styled.div `
@@ -9,6 +10,7 @@ import PlayerList from './player-list';
 function App() {
   return (
     <div>
+      <Select/>
       <PlayerList/>
     </div>
   );
