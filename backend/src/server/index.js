@@ -18,6 +18,9 @@ const typeDefs = `
         lastName: String!
         birthDate:String
         jerseyNumber: Int
+        primaryPosition:String
+        height:String
+        weight:Int
         currentTeam:[CurrentTeam]
     }
 

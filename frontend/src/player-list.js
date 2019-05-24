@@ -1,6 +1,21 @@
 import React from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  margin: 2rem;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(5, 0.5fr);
+  grid-template-rows: 1rem;
+  border-style: outset;
+`;
+const Cell = styled.span`
+  color: #5c2b2f;
+  font-size: 1rem;
+  text-align: left;
+`;
 
 const query = gql`
   {
@@ -9,6 +24,9 @@ const query = gql`
       firstName
       lastName
       jerseyNumber
+      primaryPosition
+      height
+      weight
     }
   }
 `;
@@ -28,10 +46,15 @@ class PlayerList extends React.Component {
           return (
             <div>
               {players.map(player => (
-                <div key={player.id}>
-                  <span>{player.firstName}</span> <span>{player.lastName}</span>
-                  <span>{player.jerseyNumber}</span>
-                </div>
+                <Container key={player.id}>
+                  <Cell>{player.jerseyNumber}</Cell>
+                  <Cell>
+                    {player.firstName} {player.lastName}
+                  </Cell>
+                  <Cell>{player.primaryPosition}</Cell>
+                  <Cell>{player.height}</Cell>
+                  <Cell>{player.weight}</Cell>
+                </Container>
               ))}
             </div>
           );

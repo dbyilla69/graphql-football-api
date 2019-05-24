@@ -1,16 +1,16 @@
 import React from 'react';
 import PlayerList from './player-list';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
-const AppWrapper = styled.div `
-  text-align: center;
-`
+// const AppWrapper = styled.div `
+//   text-align: center;
+// `
 
 function App() {
   return (
-    <AppWrapper>
+    <div>
       <PlayerList/>
-    </AppWrapper>
+    </div>
   );
 }
 
