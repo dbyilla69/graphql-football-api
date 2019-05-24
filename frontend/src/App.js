@@ -1,9 +1,10 @@
 import React from 'react';
+import PlayerList from './player-list';
 
 function App() {
   return (
     <div className="App">
-      <p>Testing App</p>
+   <PlayerList/>
     </div>
   );
 }
