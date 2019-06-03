@@ -4,6 +4,14 @@ import React from 'react';
 //First step is to see the item change in console or network tab
 class Select extends React.Component {
   state = {};
+  handleChange = event => {
+    console.log(
+      'click team',
+      this.setState({
+        team: event.target.value
+      })
+    );
+  };
   render() {
     return (
       <div>

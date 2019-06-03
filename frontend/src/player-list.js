@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, minmax(50px, 1fr));
+  grid-template-columns: repeat(6, minmax(50px, 1fr));
   background-color: #fff;
   color: #444;
   max-width: 800px;
@@ -30,7 +30,6 @@ const Box = styled.div`
   border-radius: 5px;
   padding: 20px;
   font-size: 100%;
-  border-style: outset;
 `;
 
 const query = gql`
@@ -43,6 +42,10 @@ const query = gql`
       primaryPosition
       height
       weight
+      currentTeam {
+        id
+        abbreviation
+      }
     }
   }
 `;
@@ -66,15 +69,17 @@ class PlayerList extends React.Component {
               <Title>Position</Title>
               <Title>Height</Title>
               <Title>Weight</Title>
+              <Title>Team</Title>
               {players.map(player => (
                 <Row key={player.id}>
-                  <Box key={player.id}>
+                  <Box>
                     {player.firstName} {player.lastName}
                   </Box>
                   <Box>{player.jerseyNumber}</Box>
                   <Box>{player.primaryPosition}</Box>
                   <Box>{player.height}</Box>
                   <Box>{player.weight}</Box>
+                  <Box>{player.currentTeam.abbreviation}</Box>
                 </Row>
               ))}
             </Wrapper>
