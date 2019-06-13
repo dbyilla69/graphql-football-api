@@ -1,24 +1,15 @@
-import { GraphQLServer } from 'graphql-yoga';
+import {
+  GraphQLServer
+} from 'graphql-yoga';
 import axios from './axiosUrl';
 // Scalar types - String, Boolean, Int, Float, ID
 
-const transformPlayerResponse = details => ({
-  id: p.player.id,
-  firstName: p.player.firstName,
-  lastName: p.player.lastName,
-  birthDate: p.player.birthDate,
-  jerseyNumber: p.player.jerseyNumber,
-  primaryPosition: p.player.primaryPosition,
-  height: p.player.height,
-  weight: p.player.weight,
-  abbreviation: p.player.abbreviation
-});
 
 // Type definitions (schema)
 const typeDefs = `
     type Query {
          players: [Player]
-          currentTeam(id:String!):[CurrentTeam]
+         currentTeam(team: String):[CurrentTeam]
     }
 
     type Player {
@@ -42,7 +33,6 @@ const typeDefs = `
       primaryPosition:String
       height:String
       weight:Int
-
     }
 `;
 
@@ -54,9 +44,12 @@ const resolvers = {
       return Object.values(res.data.players).map(p => p.player);
     },
     currentTeam: async (parent, args, ctx, info) => {
-      const { id } = args;
-      const res = await axios.get(`/players.json?team=${id}`);
+      const {
+        team
+      } = args;
+      const res = await axios.get(`/players.json?team=${team}`);
       return Object.values(res.data.players).map(p => ({
+        id: p.player.id,
         firstName: p.player.firstName,
         lastName: p.player.lastName,
         jerseyNumber: p.player.jerseyNumber,
