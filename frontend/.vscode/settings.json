@@ -34,7 +34,7 @@
     "**/.next": true
   },
   "workbench.colorTheme": "Cobalt2",
-  "workbench.editor.tabCloseButton": "off",
+  "workbench.editor.tabCloseButton": "right",
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
@@ -52,28 +52,8 @@
   // tell the ESLint plugin to run on save
   "eslint.autoFixOnSave": true,
   // Optional: If you have the prettier extension enabled for other languages like CSS and HTML, turn it off for JS since we are doing it through Eslint already
-  "prettier.disableLanguages": [
-    "js"
-  ],
+  "prettier.disableLanguages": ["js"],
   "eslint.alwaysShowStatus": true,
-  "cSpell.userWords": [
-    "SIGNUP",
-    "Signin",
-    "Signout",
-    "TLDR",
-    "Templating",
-    "backend",
-    "camo",
-    "destructure",
-    "gmail",
-    "injectable",
-    "lightgrey",
-    "minmax",
-    "prefetch",
-    "promisify",
-    "refetch",
-    "wesbos"
-  ],
   "editor.autoIndent": true,
   "window.closeWhenEmpty": true,
   "editor.detectIndentation": false,

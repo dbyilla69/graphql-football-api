@@ -1,9 +1,6 @@
-import {
-  GraphQLServer
-} from 'graphql-yoga';
+import { GraphQLServer } from 'graphql-yoga';
 import axios from './axiosUrl';
 // Scalar types - String, Boolean, Int, Float, ID
-
 
 // Type definitions (schema)
 const typeDefs = `
@@ -33,6 +30,7 @@ const typeDefs = `
       primaryPosition:String
       height:String
       weight:Int
+      image:String
     }
 `;
 
@@ -44,9 +42,7 @@ const resolvers = {
       return Object.values(res.data.players).map(p => p.player);
     },
     currentTeam: async (parent, args, ctx, info) => {
-      const {
-        team
-      } = args;
+      const { team } = args;
       const res = await axios.get(`/players.json?team=${team}`);
       return Object.values(res.data.players).map(p => ({
         id: p.player.id,
@@ -56,7 +52,8 @@ const resolvers = {
         primaryPosition: p.player.primaryPosition,
         height: p.player.height,
         weight: p.player.weight,
-        team: p.player.currentTeam.abbreviation
+        team: p.player.currentTeam.abbreviation,
+        image: p.player.officialImageSrc
       }));
     }
   }
