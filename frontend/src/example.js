@@ -3,7 +3,6 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 
-
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(6, minmax(50px, 1fr));
@@ -50,7 +49,7 @@ const CURRENT_TEAM_QUERY = gql`
 `;
 
 class CurrentTeam extends Component {
-  state = { team: 'Ari' };
+  state = { team: null };
   handleChange = e => {
     const { value } = e.target;
     console.log({ value });
@@ -58,8 +57,9 @@ class CurrentTeam extends Component {
     this.setState({ team: e.target.value });
   };
   render() {
+    const { team } = this.state;
     return (
-      <Query query={CURRENT_TEAM_QUERY} variables={{ team: this.state.team }}>
+      <Query query={CURRENT_TEAM_QUERY} variables={{ team }}>
         {({ loading, error, data }) => {
           if (loading) return null;
           if (error) return `Error! ${error}`;
@@ -69,7 +69,8 @@ class CurrentTeam extends Component {
 
           return (
             <div>
-              <select value={this.state.team} onChange={this.handleChange}>
+              <select value={team} onChange={this.handleChange}>
+                <option>Please Select a team</option>
                 <option value='ARI'>Arizona Cardinals</option>
                 <option value='ATL'>Atlanta Falcons</option>
                 <option value='BAL'>Baltimore Ravens</option>
@@ -103,32 +104,35 @@ class CurrentTeam extends Component {
                 <option value='TEN'>Tennessee Titans</option>
                 <option value='WAS'>Washington Redskins</option>
               </select>
-              <Wrapper>
-                <Title />
-                <Title>Player Name</Title>
-                <Title>Jersey Number</Title>
-                <Title>Position</Title>
-                <Title>Height</Title>
-                <Title>Weight</Title>
-                {currentTeam.map(player => (
-                  <Row key={player.id}>
-                    <Box>
-                      <img
-                        src={player.image}
-                        alt='pic'
-                        style={{ height: 40, width: 40 }}
-                      />
-                    </Box>
-                    <Box>
-                      {player.firstName} {player.lastName}
-                    </Box>
-                    <Box>{player.jerseyNumber}</Box>
-                    <Box>{player.primaryPosition}</Box>
-                    <Box>{player.height}</Box>
-                    <Box>{player.weight}</Box>
-                  </Row>
-                ))}
-              </Wrapper>
+
+              {team && (
+                <Wrapper>
+                  <Title />
+                  <Title>Player Name</Title>
+                  <Title>Jersey Number</Title>
+                  <Title>Position</Title>
+                  <Title>Height</Title>
+                  <Title>Weight</Title>
+                  {currentTeam.map(player => (
+                    <Row key={player.id}>
+                      <Box>
+                        <img
+                          src={player.image}
+                          alt='pic'
+                          style={{ height: 40, width: 40 }}
+                        />
+                      </Box>
+                      <Box>
+                        {player.firstName} {player.lastName}
+                      </Box>
+                      <Box>{player.jerseyNumber}</Box>
+                      <Box>{player.primaryPosition}</Box>
+                      <Box>{player.height}</Box>
+                      <Box>{player.weight}</Box>
+                    </Row>
+                  ))}
+                </Wrapper>
+              )}
             </div>
           );
         }}
