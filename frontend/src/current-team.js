@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
+import Player from './components/player';
+import TableHeader from './components/tableHeader';
 
 const Wrapper = styled.div`
   display: grid;
@@ -9,27 +11,6 @@ const Wrapper = styled.div`
   background-color: #fff;
   color: #444;
   max-width: 800px;
-`;
-
-const Row = styled.div`
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(50px, 1fr));
-`;
-
-const Title = styled.div`
-  background-color: #444;
-  color: #fff;
-  border-radius: 5px;
-  padding: 12px;
-  font-size: 100 %;
-`;
-const Box = styled.div`
-  background-color: #c7c7c724;
-  color: #444;
-  border-radius: 5px;
-  padding: 12px;
-  font-size: 100%;
 `;
 
 const CURRENT_TEAM_QUERY = gql`
@@ -49,13 +30,12 @@ const CURRENT_TEAM_QUERY = gql`
 `;
 
 class CurrentTeam extends Component {
-  state = { team: null };
-  handleChange = e => {
-    const { value } = e.target;
-    console.log({ value });
+  state = { team: undefined };
 
+  handleChange = e => {
     this.setState({ team: e.target.value });
   };
+
   render() {
     const { team } = this.state;
     return (
@@ -104,32 +84,20 @@ class CurrentTeam extends Component {
                 <option value='TEN'>Tennessee Titans</option>
                 <option value='WAS'>Washington Redskins</option>
               </select>
-
               {team && (
                 <Wrapper>
-                  <Title />
-                  <Title>Player Name</Title>
-                  <Title>Jersey Number</Title>
-                  <Title>Position</Title>
-                  <Title>Height</Title>
-                  <Title>Weight</Title>
+                  <TableHeader />
                   {currentTeam.map(player => (
-                    <Row key={player.id}>
-                      <Box>
-                        <img
-                          src={player.image}
-                          alt='pic'
-                          style={{ height: 40, width: 40 }}
-                        />
-                      </Box>
-                      <Box>
-                        {player.firstName} {player.lastName}
-                      </Box>
-                      <Box>{player.jerseyNumber}</Box>
-                      <Box>{player.primaryPosition}</Box>
-                      <Box>{player.height}</Box>
-                      <Box>{player.weight}</Box>
-                    </Row>
+                    <Player
+                      key={player.id}
+                      image={player.image}
+                      firstName={player.firstName}
+                      lastName={player.lastName}
+                      jerseyNumber={player.jerseyNumber}
+                      primaryPosition={player.primaryPosition}
+                      height={player.height}
+                      weight={player.weight}
+                    />
                   ))}
                 </Wrapper>
               )}

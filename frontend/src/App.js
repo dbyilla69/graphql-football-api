@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route} from "react-router-dom";
-import Example from "./example";
+import CurrentTeam from "./current-team";
 
 
 
 function App() {
   return (
     <Router>
-      <Route path="/" exact component={Example}></Route>
+      <Route path="/" exact component={CurrentTeam}></Route>
     </Router>
   );
 }
