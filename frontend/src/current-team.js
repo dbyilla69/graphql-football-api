@@ -1,33 +1,9 @@
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
-import styled from 'styled-components';
+import { Wrapper } from './components/styled';
 import Player from './components/player';
 import TableHeader from './components/tableHeader';
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(6, minmax(50px, 1fr));
-  background-color: #fff;
-  color: #444;
-  max-width: 800px;
-`;
-
-const CURRENT_TEAM_QUERY = gql`
-  query CurrentTeam($team: String) {
-    currentTeam(team: $team) {
-      id
-      team
-      firstName
-      lastName
-      jerseyNumber
-      primaryPosition
-      height
-      weight
-      image
-    }
-  }
-`;
+import { CURRENT_TEAM_QUERY } from './components/queries';
 
 class CurrentTeam extends Component {
   state = { team: undefined };
