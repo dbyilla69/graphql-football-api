@@ -6,7 +6,7 @@ import TableHeader from './components/tableHeader';
 import { CURRENT_TEAM_QUERY } from './components/queries';
 
 class CurrentTeam extends Component {
-  state = { team: undefined };
+  state = { team: undefined, season: "latest" };
 
   handleChange = e => {
     this.setState({ team: e.target.value });

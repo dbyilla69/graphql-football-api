@@ -15,3 +15,17 @@ export const CURRENT_TEAM_QUERY = gql`
     }
   }
 `;
+export const TEAM_QUERY = gql`
+  query {
+    players {
+      id
+      firstName
+      lastName
+      jerseyNumber
+      primaryPosition
+      height
+      weight
+         officialImageSrc
+    }
+  }
+`;

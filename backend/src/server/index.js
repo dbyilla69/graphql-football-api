@@ -17,7 +17,9 @@ const typeDefs = `
         jerseyNumber: Int
         primaryPosition:String
         height:String
-        weight:Int
+        weight:Int 
+        officialImageSrc:String
+
     }
 
     type CurrentTeam{
@@ -38,12 +40,14 @@ const typeDefs = `
 const resolvers = {
   Query: {
     players: async () => {
-      const res = await axios.get(`/players.json?team=was`);
+      const res = await axios.get(`/players.json?team=hou&&season=latest`);
       return Object.values(res.data.players).map(p => p.player);
     },
     currentTeam: async (parent, args, ctx, info) => {
-      const { team } = args;
-      const res = await axios.get(`/players.json?team=${team}`);
+      const { team, season } = args;
+      const res = await axios.get(
+        `/players.json?team=${team}&&?season=${season}`
+      );
       return Object.values(res.data.players).map(p => ({
         id: p.player.id,
         firstName: p.player.firstName,
