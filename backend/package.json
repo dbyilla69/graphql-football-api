@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/server/index.js --ignore client --ext js,graphql --exec babel-node"
+    "server": "nodemon src/server/index.js --ignore client --ext js,graphql --exec babel-node"
   },
   "author": "",
   "license": "ISC",

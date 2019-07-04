@@ -1,0 +1,25 @@
+{
+  "name": "graphql-football-api",
+  "version": "1.0.0",
+  "description": "This is to initliaze top level app ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "concurrently \"npm run server\" \"npm run client\"",
+        "server": "cd backend && npm run server",
+        "client": "cd frontend && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbyilla69/graphql-football-api.git"
+  },
+  "author": "D. Yilla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dbyilla69/graphql-football-api/issues"
+  },
+  "homepage": "https://github.com/dbyilla69/graphql-football-api#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.1"
+  }
+}
