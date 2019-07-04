@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "concurrently \"npm run server\" \"npm run client\"",
-        "server": "cd backend && npm run server",
-        "client": "cd frontend && npm run start"
+        "app": "concurrently \"npm run backend\" \"npm run frontend\"",
+        "backend": "cd backend && npm run server",
+        "frontend": "cd frontend && npm run start"
   },
   "repository": {
     "type": "git",
