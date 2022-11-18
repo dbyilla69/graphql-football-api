@@ -17,7 +17,7 @@
     "btoa": "^1.2.1",
     "css-loader": "^2.1.1",
     "graphql-yoga": "^1.14.10",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "import-sort-style-eslint": "^6.0.0",
     "react": "^16.8.6",
     "react-apollo": "^2.5.3",
